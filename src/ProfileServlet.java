@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
 
-public class LoginServlet extends HttpServlet {
+public class ProfileServlet extends HttpServlet {
     DataBase dataBase= new DataBase();
     Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
@@ -22,29 +22,20 @@ public class LoginServlet extends HttpServlet {
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
-        String name = request.getParameter("username");
-        String password = request.getParameter("password");
-        String login= request.getParameter("login");
-
-        if(login!=null){
-            if(dataBase.checkNameAndPassword(name, password)){
-                HttpSession session = request.getSession();
-                session.setAttribute("name", name);
-                request.getRequestDispatcher("/transition.html").forward(request, response);
-            }
-            else{
-                request.getRequestDispatcher("/errorArentExist.html").forward(request, response);
-            }
-        }
-        out.println("</html></body>");
-        out.close();
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><body>");
+        HttpSession session = request.getSession(false);
+        String name = (String)session.getAttribute("name");
+        out.print("<p>Name: " + name + "</p><p>Score: " + 0 + "</p>");
+        request.getRequestDispatcher("profile.html").include(request, response);
+
+        out.println("</html></body>");
+        out.close();
+
 
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns ="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
         <div class="container">
@@ -25,12 +26,13 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle Navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        </div>
-        <div class="collapse navbar-collapse" id="basicExampleNav">
-            <div class="navbar-nav mr-auto smooth-scroll">
-                <a class="nav-item">
-                    <a href="game" class="nav-link waves-effect waves-light" methods="get">New game</a>
-                </a>
+
+            <div class="collapse navbar-collapse" id="basicExampleNav">
+                <div class="navbar-nav mr-auto smooth-scroll">
+                    <a class="nav-item">
+                        <a href="game" class="nav-link waves-effect waves-light" methods="get">New game</a>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
@@ -41,34 +43,23 @@
                 <div class="row d-flex justify-content-center text-center">
                     <div class="col-md-12">
                         <div class="profile-sidebar">
-                            <h2 class="display-6 font-weight-bold white-text pt-5 mb-4">
-                                Пожалуйста, зарегистрируйтесь!
-                            </h2>
-                            <div class="card card-signin my-5">
-                                <div class="card-body">
-                                    <form action="registration" method="post">
-                                        <div><label> Username: <input type="text" name="username"/> </label></div>
-                                        <div><label> Password: <input type="password" name="password"/> </label></div>
-                                        <input type="submit" value="Регистрация" name="registration">
-                                    </form>
-                                </div>
-                            </div>
+                            <h2 class="display-6 font-weight-bold white-text pt-5 mb-4">Check your profile:</h2>
+                            <a href = "profile" class="btn btn-lg btn-primary btn-block text-uppercase" methods="get">Check</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 </header>
 <!-- SCRIPTS -->
 <!-- JQuery -->
-<script type="text/javascript" charset="utf-8" src="./js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" charset="utf-8" src="./js/popper.min.js"></script>
+<script type="text/javascript" src="./js/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript" charset="utf-8" src="./js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" charset="utf-8" src="./js/mdb.min.js"></script>
+<script type="text/javascript" src="./js/mdb.min.js"></script>
 </body>
 </html>

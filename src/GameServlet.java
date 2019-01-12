@@ -28,13 +28,11 @@ public class GameServlet extends HttpServlet {
         out.println("<html><body>");
         HttpSession session = request.getSession(false);
         if(session != null&&dataBase.checkName((String)session.getAttribute("name"))){
-            request.getRequestDispatcher("game.html").forward(request, response);
+            request.getRequestDispatcher("/game.html").forward(request, response);
         }
         else{
-            out.print("Please, login first");
-            request.getRequestDispatcher("login.html").include(request, response);
+            request.getRequestDispatcher("/errorLoginFirst.html").forward(request, response);
         }
-
         out.println("</html></body>");
         out.close();
 

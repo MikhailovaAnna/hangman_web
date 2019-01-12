@@ -30,12 +30,11 @@ public class RegistrationServlet extends HttpServlet {
         if(registration!=null){
             if(!dataBase.checkName(name)) {
                 dataBase.addData(name, password);
-                out.println("Welcome, " + name);
+//                out.println("Welcome, " + name);
                 request.getRequestDispatcher("/login.html").forward(request, response);
             }
             else{
-                out.println("Sorry, this name already exists");
-                request.getRequestDispatcher("login.html").include(request, response);
+                request.getRequestDispatcher("/errorAlreadyExist.html").forward(request, response);
             }
         }
         out.println("</html></body>");
