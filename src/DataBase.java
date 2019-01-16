@@ -4,10 +4,10 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class DataBase {
-    private String path="/home/ann/git/hangman_web/src/resource/data.txt";
-    private HashMap<String, String> dataList = new HashMap<>();
-    private Logger logger= Logger.getLogger(DataBase.class.getName());
+class DataBase {
+    private final String path="/home/ann/git/hangman_web/src/resource/data.txt";
+    private final HashMap<String, String> dataList = new HashMap<>();
+    private final Logger logger= Logger.getLogger(DataBase.class.getName());
 
     public boolean checkName(String name){
         return dataList.containsKey(name);
@@ -40,13 +40,9 @@ public class DataBase {
         }
     }
 
-    synchronized void writeFile() throws IOException, FileNotFoundException {
-        FileWriter fstream= null;
-        BufferedWriter out= null;
-        try {
-            fstream = new FileWriter(path);
-            out = new BufferedWriter(fstream);
-            for (Map.Entry<String, String> it: dataList.entrySet()) {
+    synchronized void writeFile() throws IOException {
+        try (FileWriter fstream = new FileWriter(path); BufferedWriter out = new BufferedWriter(fstream)) {
+            for (Map.Entry<String, String> it : dataList.entrySet()) {
                 out.write(it.getKey() + " ");
                 out.write(it.getValue());
                 out.write("\n");
@@ -54,10 +50,6 @@ public class DataBase {
             out.close();
         } catch (IOException e) {
             logger.info(e.toString());
-        }
-        finally {
-            fstream.close();
-            out.close();
         }
     }
 }

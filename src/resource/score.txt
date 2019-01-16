@@ -1,0 +1,4 @@
+Petya 0
+rita 5
+admin 100
+Anya 5

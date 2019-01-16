@@ -5,37 +5,31 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Logger;
 
 public class ProfileServlet extends HttpServlet {
-    DataBase dataBase= new DataBase();
-    Logger logger = Logger.getLogger(LoginServlet.class.getName());
+    private static ScoreBase scoreBase;
 
     @Override
     public void init(){
-        try {
-            dataBase.readFile();
-        }
-        catch (IOException e){
-            logger.info(e.getMessage());
-
-        }
-    }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        scoreBase=new ScoreBase();
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<html><body>");
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession(false);
-        String name = (String)session.getAttribute("name");
-        out.print("<p>Name: " + name + "</p><p>Score: " + 0 + "</p>");
-        request.getRequestDispatcher("profile.html").include(request, response);
+        String userName =((String)session.getAttribute("name"));
+        String score =request.getParameter("score");
+        scoreBase.changeScore(Integer.parseInt(score),userName);
+    }
 
-        out.println("</html></body>");
-        out.close();
-
-
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
+        StringBuilder sb= new StringBuilder();
+        HttpSession session = request.getSession(false);
+        PrintWriter out = response.getWriter();
+        String userName =((String)session.getAttribute("name"));
+        Integer score =scoreBase.findScoreByName(userName);
+        sb.append(scoreBase.getRecords()).append("\n").append("Your place: ").append(scoreBase.getPlace(userName)).append(" with ").append(score.toString()).append(" scores.");
+        out.write(sb.toString());
     }
 }

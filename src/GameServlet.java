@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class GameServlet extends HttpServlet {
-    DataBase dataBase;
+    private DataBase dataBase;
     @Override
     public void init(){
         dataBase=new DataBase();
@@ -18,7 +18,7 @@ public class GameServlet extends HttpServlet {
             e.printStackTrace();
         }
     }
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
     }
 

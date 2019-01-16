@@ -8,8 +8,8 @@ import java.io.PrintWriter;
 import java.util.logging.Logger;
 
 public class LoginServlet extends HttpServlet {
-    DataBase dataBase= new DataBase();
-    Logger logger = Logger.getLogger(LoginServlet.class.getName());
+    private final DataBase dataBase= new DataBase();
+    private final Logger logger = Logger.getLogger(LoginServlet.class.getName());
 
     @Override
     public void init(){
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
             if(dataBase.checkNameAndPassword(name, password)){
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
-                request.getRequestDispatcher("/transition.html").forward(request, response);
+                request.getRequestDispatcher("/profile.html").forward(request, response);
             }
             else{
                 request.getRequestDispatcher("/errorArentExist.html").forward(request, response);
@@ -44,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 
     }
 }
